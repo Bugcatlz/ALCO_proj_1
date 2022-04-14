@@ -1,6 +1,6 @@
 ALO_prog_1
 ===
-## 1. string
+## 1. String
 ```RISC-V
 	Input:	.string"Input a number:\n"
 	Output:	.string"The damage:\n"
@@ -9,7 +9,9 @@ ALO_prog_1
   
 再將Ouput定義為`The damge:`  
   
-## 2. main  function
+## 2. Main  Function
+  
+### a. main  
 ```RISC-V
 main:
 	la  a0, Input		#將Input放數ao
@@ -25,6 +27,7 @@ main:
   
 呼叫F(x)  
   
+### b. End  
 ```RISC-V
 End:
 	mv  t2, a0		#t2=a0
