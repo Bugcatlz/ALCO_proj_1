@@ -4,86 +4,86 @@
 	Output:	.string"The damage:\n"
 .text
 main:
-	la  a0, Input		
-	li  a7, 4
-	ecall
-	li  a7 5
-	ecall
-	jal  ra, F
+	la  a0, Input		#å°‡Inputæ”¾æ•¸ao
+	li  a7, 4		#PrintString Input
+	ecall			#system call
+	li  a7 5		#ReadIntå­˜æ–¼a0
+	ecall			#system call
+	jal  ra, F		#F(a0)
 End:
-	mv  t2, a0
-	la  a0, Output
-	li  a7,4
-	ecall
-	mv  a0, t2
-	li  a7,1
-	ecall
-	li  a7, 10
+	mv  t2, a0		#t2=a0
+	la  a0, Output		#å°‡Outputæ”¾æ–¼a0
+	li  a7,4		#PrintString Output
+	ecall			#system call
+	mv  a0, t2		#a0=t2
+	li  a7,1		#PrintInt a0
+	ecall			#system call
+	li  a7, 10		#End
 	ecall
 F:
-	addi  sp, sp, -4	#r«Ø¥ßstack
-	sw  ra, 0(sp)		#¥ı±N¦^¶Çªº¦ì¸m¦s°_¨Ó
+	addi  sp, sp, -4	#rå»ºç«‹stack
+	sw  ra, 0(sp)		#å…ˆå°‡å›å‚³çš„ä½ç½®å­˜èµ·ä¾†
 	addi t0, zero, 20	#t0 = 20
-	ble  a0, t0, L2		#§PÂ_¬O§_¤p©óµ¥©ó20«h¥hL2
-	addi  sp, sp, -4	#«Ø¥ßstack
-	sw  a0, 0(sp)		#±Na0¦s¦bstack¤º
+	ble  a0, t0, L2		#åˆ¤æ–·æ˜¯å¦å°æ–¼ç­‰æ–¼20å‰‡å»L2
+	addi  sp, sp, -4	#å»ºç«‹stack
+	sw  a0, 0(sp)		#å°‡a0å­˜åœ¨stackå…§
 	addi  t2, zero, 5 	#t2=5
 	div  a0, a0, t2		#a0=a0/5
 	jal  ra, F		#F(a0/5)
-	mv  t2, a0		#±NF(a0/5)¦s¦bt2
-	lw  a0, 0(sp)		#Åª¨ú­ì¥»ªºa0
+	mv  t2, a0		#å°‡F(a0/5)å­˜åœ¨t2
+	lw  a0, 0(sp)		#è®€å–åŸæœ¬çš„a0
 	addi  t3, zero, 2	#t3=2
 	mul  a0, a0, t3		#x=x*2
 	add  a0, a0, t2		#a0=x*3+F(x/5)
-	addi  sp, sp , 4	#¦^´_stack
+	addi  sp, sp , 4	#å›å¾©stack
 	j L7
 L2:
 	addi  t0 ,zero, 10	#t0=10
-	ble  a0, t0, L3		#§PÂ_a0¬O§_¤p©óµ¥©ó10«h¥hL3
+	ble  a0, t0, L3		#åˆ¤æ–·a0æ˜¯å¦å°æ–¼ç­‰æ–¼10å‰‡å»L3
 	addi  t0, zero, 20	#t0=20
-	bgt  a0, t0, L3		#§PÂ_a0¬O§_¤j©ó20«h¥hL3
-	addi  sp, sp, -8	#«Ø¥ßstack
-	sw  a0, 4(sp)		#±Na0¦s¦bstack¤º
+	bgt  a0, t0, L3		#åˆ¤æ–·a0æ˜¯å¦å¤§æ–¼20å‰‡å»L3
+	addi  sp, sp, -8	#å»ºç«‹stack
+	sw  a0, 4(sp)		#å°‡a0å­˜åœ¨stackå…§
 	addi  a0, a0, -2	#a0=a0-2
 	jal  ra, F		#F(x-2)
-	sw  a0, 0(sp)		#±NF(x-2)¦s¨ìstack¤º
-	lw  a0, 4(sp)		#Åª¨ú­ì¥»ªºa0
+	sw  a0, 0(sp)		#å°‡F(x-2)å­˜åˆ°stackå…§
+	lw  a0, 4(sp)		#è®€å–åŸæœ¬çš„a0
 	addi  a0, a0, -3	#a0=a0-3
 	jal  ra, F		#F(x-3)
-	lw  t0, 0(sp)		#±NF(x-2)¦s¨ìt0
-	add  a0, a0, t0		#F(x-3)+F(x-2)
-	addi  sp, sp, 8		#¦^´_stack
+	lw  t0, 0(sp)		#å°‡F(x-2)å­˜åˆ°t0
+	add  a0, a0, t0		#a0=F(x-3)+F(x-2)
+	addi  sp, sp, 8		#å›å¾©stack
 	j L7
 L3:
 	addi  t0, zero, 1	#t0=1
-	ble  a0, t0, L4		#§PÂ_¬O§_¤p©óµ¥©ó1«h¥hL4
+	ble  a0, t0, L4		#åˆ¤æ–·æ˜¯å¦å°æ–¼ç­‰æ–¼1å‰‡å»L4
 	addi  t0, zero, 10	#t0=10
-	bgt  a0, t0, L4		#§PÂ_¬O§_¤j©ó10«h¥hL4
-	addi  sp, sp, -8	#«Ø¥ßstack
-	sw  a0, 4(sp)		#±Na0¦s¦bstack¤º
+	bgt  a0, t0, L4		#åˆ¤æ–·æ˜¯å¦å¤§æ–¼10å‰‡å»L4
+	addi  sp, sp, -8	#å»ºç«‹stack
+	sw  a0, 4(sp)		#å°‡a0å­˜åœ¨stackå…§
 	addi  a0, a0, -1	#a0=a0-1
 	jal  ra, F		#F(x-1)
-	sw  a0, 0(sp)		#±NF(x-1)¦s¨ìstack¤º
-	lw  a0, 4(sp)		#Åª¨ú­ì¥»ªºa0
+	sw  a0, 0(sp)		#å°‡F(x-1)å­˜åˆ°stackå…§
+	lw  a0, 4(sp)		#è®€å–åŸæœ¬çš„a0
 	addi  a0, a0, -2	#a0=a0-2
 	jal  ra, F		#F(x-2)
-	lw  t0, 0(sp)		#±NF(x-1)¦s¨ìt0
-	add  a0, a0, t0		#F(x-3)+F(x-2)
-	addi  sp, sp, 8		#¦^´_stack
+	lw  t0, 0(sp)		#å°‡F(x-1)å­˜åˆ°t0
+	add  a0, a0, t0		#a0=F(x-3)+F(x-2)
+	addi  sp, sp, 8		#å›å¾©stack
 	j L7
 L4:
-	bne   a0, zero, L5	#§PÂ_¬O§_¤£µ¥©ó0«h¥hL5
+	bne   a0, zero, L5	#åˆ¤æ–·æ˜¯å¦ä¸ç­‰æ–¼0å‰‡å»L5
 	addi  a0, zero, 1	#a0=1
 	j L7
 L5:
 	addi  t0, zero, 1	#t0=1
-	bne   a0, t0, L6	#§PÂ_¬O§_¤£µ¥©ó1«h¥hL6
+	bne   a0, t0, L6	#åˆ¤æ–·æ˜¯å¦ä¸ç­‰æ–¼1å‰‡å»L6
 	addi  a0, zero, 5	#a0=5
 	j L7
 L6:
 	addi  a0, zero, -1	#a0=-1
 	j L7
 L7:
-	lw  ra, 0(sp)		#Åª¨ú­ì¥»ªº¦^¶Ç¦ì¸m
-	addi  sp, sp, 4		#¦^´_stack
+	lw  ra, 0(sp)		#è®€å–åŸæœ¬çš„å›å‚³ä½ç½®
+	addi  sp, sp, 4		#å›å¾©stack
 	jalr  x0, ra, 0
