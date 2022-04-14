@@ -1,4 +1,4 @@
-ALO_prog1
+ALO_prog_1
 ===
 ## 1. string
 ```RISC-V
