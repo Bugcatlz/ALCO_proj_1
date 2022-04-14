@@ -88,7 +88,7 @@ L2:
 	addi  a0, a0, -3	#a0=a0-3
 	jal  ra, F		#F(x-3)
 	lw  t0, 0(sp)		#將F(x-2)存到t0
-	add  a0, a0, t0		#F(x-3)+=F(x-2)
+	add  a0, a0, t0		#a0=F(x-3)+F(x-2)
 	addi  sp, sp, 8		#回復stack
 	j L7
 ```  
@@ -118,7 +118,7 @@ L3:
 	addi  a0, a0, -2	#a0=a0-2
 	jal  ra, F		#F(x-2)
 	lw  t0, 0(sp)		#將F(x-1)存到t0
-	add  a0, a0, t0		#F(x-3)+F(x-2)
+	add  a0, a0, t0		#a0=F(x-3)+F(x-2)
 	addi  sp, sp, 8		#回復stack
 	j L7
 ```
