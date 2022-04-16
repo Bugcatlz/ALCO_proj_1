@@ -1,4 +1,4 @@
-ALO_prog_1
+ALO_pro_1
 ===
 ## 1. String
 ```RISC-V
