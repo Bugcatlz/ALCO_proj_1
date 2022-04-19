@@ -14,7 +14,7 @@ ALO_proj_1
 ### a. main  
 ```RISC-V
 main:
-	la  a0, Input		#將Input放數ao
+	la  a0, Input		#將Input放入ao
 	li  a7, 4		#PrintString Input
 	ecall			#system call
 	li  a7 5		#ReadInt存於a0
